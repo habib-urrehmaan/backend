@@ -9,16 +9,16 @@ node {
 
     dir("backend") 
     {
-        sh "pwd"
+        sh "ls"
     }
 
-    stage('Build image') {
+    // stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
         // sh "cd backend"
-        sh "ls"
+        // sh "ls"
         // sh "docker image build -t habiburrehman344/backend ."
-    }
+    // }
 
     // stage('Test image') {
     //     app.inside {
