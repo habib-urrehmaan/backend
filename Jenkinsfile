@@ -19,8 +19,9 @@ node {
     stage('Push image') {
         
         docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+            // app.push("${env.BUILD_NUMBER}")
+            // app.push("latest")
+            sh "docker push habiburrehman344/backend"
         }
     }
 
