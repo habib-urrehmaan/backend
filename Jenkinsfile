@@ -5,7 +5,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        sh "docker build -t habiburrehman344/backend ."
+        sh "docker image build -t habiburrehman344/backend ."
     }
 
     stage('Test image') {
