@@ -18,13 +18,8 @@ node {
 
     stage('Push image') {
         
-         withCredentials([usernamePassword( credentialsId: 'DockerHub', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
-            def registry_url = "registry.hub.docker.com/"
-            sh "docker login -u $USER -p $PASSWORD ${registry_url}"
-            docker.withRegistry("http://${registry_url}", "DockerHub") {
-                // Push your image now
-                sh "docker push habiburrehman344/backend"
-            }
+         withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
+        bat "docker push habiburrehman344/backend"
         }
     }
 
