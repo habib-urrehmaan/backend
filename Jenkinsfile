@@ -7,10 +7,15 @@ node {
         sh "git clone https://github.com/habiburrehman012/backend.git"
     }
 
+    dir("backend") 
+    {
+        sh "pwd"
+    }
+
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        sh "cd backend"
+        // sh "cd backend"
         sh "ls"
         // sh "docker image build -t habiburrehman344/backend ."
     }
