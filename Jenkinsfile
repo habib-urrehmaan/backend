@@ -21,7 +21,7 @@ node {
          withCredentials([usernamePassword( credentialsId: 'DockerHub', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
             def registry_url = "registry.hub.docker.com/"
             sh "docker login -u $USER -p $PASSWORD ${registry_url}"
-            docker.withRegistry("http://${registry_url}", "docker-hub-credentials") {
+            docker.withRegistry("http://${registry_url}", "DockerHub") {
                 // Push your image now
                 sh "docker push habiburrehman344/backend"
             }
