@@ -1,6 +1,11 @@
 node {
     def app
 
+    stage('Build application')
+    {
+        sh "git clone https://github.com/habiburrehman012/backend.git"
+    }
+
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
