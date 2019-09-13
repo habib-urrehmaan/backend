@@ -19,7 +19,7 @@ node {
     stage('Push image') {
         
          withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
-        bat "docker push habiburrehman344/backend"
+        sh "docker push habiburrehman344/backend"
         }
     }
 
