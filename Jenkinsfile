@@ -5,19 +5,16 @@ node {
     {
         sh "rm -r backend" 
         sh "git clone https://github.com/habiburrehman012/backend.git"
-        dir("backend") 
-        {
-            sh "ls"
-        }
     }
 
-    // stage('Build image') {
+    stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        // sh "cd backend"
-        // sh "ls"
-        // sh "docker image build -t habiburrehman344/backend ."
-    // }
+        dir("backend") 
+        {
+            sh "docker image build -t habiburrehman344/backend ."
+        }
+    }
 
     // stage('Test image') {
     //     app.inside {
