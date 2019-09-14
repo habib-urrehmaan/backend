@@ -1,8 +1,11 @@
 pipeline {
-  
+  environment {
+    registry = "gustavoapolinario/docker-test"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
   agent any
   stages {
-    def app
     stage('Cloning Git') {
       steps {
         sh "if [ -d backend ]; then rm -Rf backend; fi"
@@ -46,17 +49,15 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          // dockerImage = docker.build registry + ":latest"
-          app = docker.build("habiburrehman344/backend")
+          dockerImage = docker.build registry + ":latest"
         }
       }
     }
 
     stage('Push image') {
       steps {
-        docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
-            app.push("latest")
-        }
+        docker.withRegistry( '', registryCredential ) {
+        dockerImage.push()
       }
     }
     stage('Deploy Image') {
