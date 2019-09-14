@@ -4,9 +4,7 @@ pipeline {
     registryCredential = 'DockerHub'
     dockerImage = ''
   }
-  agent {
-    label 'docker' 
-  }
+  agent any
   stages {
     stage('Cloning Git') {
       steps {
@@ -49,7 +47,8 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":latest"
+          // dockerImage = docker.build registry + ":latest"
+          sh "docker build image -t habiburrehman344/backend"
         }
       }
     }
