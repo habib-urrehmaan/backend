@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/habiburrehman012/backend.git'
+        sh 'git clone https://github.com/habiburrehman012/backend.git'
         if(env.BRANCH_NAME == 'development'){
           sh 'git checkout development'
         }
