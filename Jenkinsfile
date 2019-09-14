@@ -1,7 +1,8 @@
 pipeline {
-  def app
+  
   agent any
   stages {
+    def app
     stage('Cloning Git') {
       steps {
         sh "if [ -d backend ]; then rm -Rf backend; fi"
