@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/habiburrehman012/backend.git'
+        git 'https://github.com/habiburrehman012/backend.git --branch development'
       }
     }
 
