@@ -14,15 +14,22 @@ node {
 
     stage('Building Application')
     {
-        steps {
-            echo 'Build Successfull'
+        if(env.BRANCH_NAME == 'master'){
+            steps {
+                echo 'Build Successfull'
+            }
+        }
+        else if (env.BRANCH_NAME == 'development') {
+            steps {
+                sh 'npm install'
+            }
         }
     }
 
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + ":latest"
         }
       }
     }
@@ -34,5 +41,14 @@ node {
           }
         }
       }
+    }
+
+    if(env.BRANCH_NAME == 'master'){
+        stage('Update Deployment')
+        {
+            steps{
+                sh 'kubectl apply -f backend'
+            }
+        }
     }
 }
