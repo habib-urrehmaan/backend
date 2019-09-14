@@ -5,6 +5,10 @@ node {
     {
         sh "rm -r backend" 
         sh "git clone https://github.com/habiburrehman012/backend.git"
+        if(env.BRANCH_NAME == 'development')
+        {
+            sh "git checkout development"
+        }
     }
 
     stage('Build image') {
@@ -23,8 +27,14 @@ node {
         }
     }
 
-    // stage('Deployment') {
-    //     sh 'minikube apply -f frontend.yaml'
-    //     sh 'minikube apply -f backend.yaml'
-    // }
+    if(env.BRANCH_NAME == 'master'){
+        stage('Merge') {
+            sh 'git merge branch development'
+        }
+
+        stage('Deployment') {
+            sh 'minikube apply -f frontend.yaml'
+            sh 'minikube apply -f backend.yaml'
+        }
+    }
 }
