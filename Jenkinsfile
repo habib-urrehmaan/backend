@@ -1,15 +1,12 @@
 pipeline {
-    environment {
-    registry = "habiburrehman344/backend"
-    registryCredential = 'DockerHub'
-    dockerImage = ''
-  }
+  def app
   agent any
   stages {
     stage('Cloning Git') {
       steps {
         sh "if [ -d backend ]; then rm -Rf backend; fi"
-        sh 'git clone https://github.com/habiburrehman012/backend.git'
+        // sh 'git clone https://github.com/habiburrehman012/backend.git'
+        checkout scm
       }
     }
 
@@ -49,7 +46,15 @@ pipeline {
       steps{
         script {
           // dockerImage = docker.build registry + ":latest"
-          sh "docker build image -t habiburrehman344/backend ."
+          app = docker.build("habiburrehman344/backend")
+        }
+      }
+    }
+
+    stage('Push image') {
+      steps {
+        docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
+            app.push("latest")
         }
       }
     }
