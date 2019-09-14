@@ -3,7 +3,9 @@ node {
 
     stage('Build application')
     {
-        sh "rm -r backend" 
+        if( folderExists("/backend") ) {
+            sh "rm -r backend"
+        }
         sh "git clone https://github.com/habiburrehman012/backend.git"
         if(env.BRANCH_NAME == 'development')
         {
