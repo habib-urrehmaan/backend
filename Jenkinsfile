@@ -9,7 +9,7 @@ pipeline {
     stage('Cloning Git') {
       steps {
         sh 'git clone https://github.com/habiburrehman012/backend.git'
-        sh 'git checkout development'
+        // sh 'git checkout development'
       }
     }
 
