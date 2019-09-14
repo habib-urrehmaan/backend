@@ -1,42 +1,38 @@
 node {
-    def app
+    environment {
+    registry = "habiburrehman344/backend"
+    registryCredential = 'DockerHub'
+    dockerImage = ''
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/habiburrehman012/backend.git --branch development'
+      }
+    }
 
-    stage('Build application')
+    stage('Building Application')
     {
-        if( folderExists("/backend") ) {
-            sh "rm -r backend"
-        }
-        sh "git clone https://github.com/habiburrehman012/backend.git"
-        if(env.BRANCH_NAME == 'development')
-        {
-            sh "git checkout development"
+        steps {
+            echo 'Build Successfull'
         }
     }
 
-    stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-        dir("backend") 
-        {
-            sh "docker image build -t habiburrehman344/backend ."
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
+      }
     }
-
-    stage('Push image') {
-        
-         withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
-        sh "docker push habiburrehman344/backend"
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
         }
-    }
-
-    if(env.BRANCH_NAME == 'master'){
-        stage('Merge') {
-            sh 'git merge branch development'
-        }
-
-        stage('Deployment') {
-            sh 'minikube apply -f frontend.yaml'
-            sh 'minikube apply -f backend.yaml'
-        }
+      }
     }
 }
