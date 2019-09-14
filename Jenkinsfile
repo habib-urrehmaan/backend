@@ -9,10 +9,15 @@ pipeline {
     stage('Cloning Git') {
       steps {
         sh 'git clone https://github.com/habiburrehman012/backend.git'
-        if(env.BRANCH_NAME == 'development'){
+      }
+    }
+
+    if(env.BRANCH_NAME == 'development'){
+      stage('Checkout') {
+        steps {
           sh 'git checkout development'
         }
-      }
+      }    
     }
 
     stage('Building Application')
