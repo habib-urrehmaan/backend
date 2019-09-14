@@ -49,7 +49,7 @@ pipeline {
       steps{
         script {
           // dockerImage = docker.build registry + ":latest"
-          sh "docker build image -t habiburrehman344/backend"
+          sh "docker build image -t habiburrehman344/backend ."
         }
       }
     }
