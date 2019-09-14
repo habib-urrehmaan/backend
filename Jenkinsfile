@@ -12,12 +12,14 @@ pipeline {
       }
     }
 
-    if(env.BRANCH_NAME == 'development'){
-      stage('Checkout') {
-        steps {
-          sh 'git checkout development'
-        }
-      }    
+    stage('Checkout') {
+      when
+      {
+        branch 'development'
+      }
+      steps {
+        sh 'git checkout development'
+      }
     }
 
     stage('Building Application')
