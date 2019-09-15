@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        // sh "if [ -d backend ]; then rm -Rf backend; fi"
+        sh "if [ -d backend ]; then rm -Rf backend; fi"
         // sh 'git clone https://github.com/habiburrehman012/backend.git'
         // checkout scm
       }
