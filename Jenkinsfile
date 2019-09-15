@@ -14,15 +14,15 @@ pipeline {
       }
     }
 
-    stage('Checkout') {
-      when
-      {
-        branch 'development'
-      }
-      steps {
-        sh 'git checkout development'
-      }
-    }
+    // stage('Checkout') {
+    //   when
+    //   {
+    //     branch 'development'
+    //   }
+    //   steps {
+    //     sh 'git checkout development'
+    //   }
+    // }
 
     stage('Building Application')
     {
@@ -38,13 +38,13 @@ pipeline {
         // }
     }
 
-    stage('Testing')
-    {
+    // stage('Testing')
+    // {
 
-        steps{
-            sh "git status"
-        }
-    }
+    //     steps{
+    //         sh "git status"
+    //     }
+    // }
 
     stage('Building image') {
       steps{
