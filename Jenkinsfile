@@ -48,21 +48,22 @@ pipeline {
 
     stage('Building image') {
       steps{
-        script {
-          dockerImage = docker.build registry + ":latest"
-        }
+        // script {
+        //   dockerImage = docker.build registry + ":latest"
+        // }
+        sh 'docker build -t habiburrehman344/backend:latest .'
       }
     }
 
-    stage('Push image') {
-      steps {
-        script {
-          docker.withRegistry( '', registryCredential ) {
-          dockerImage.push()
-        }
-      }
-    }
-    }
+    // stage('Push image') {
+    //   steps {
+    //     script {
+    //       docker.withRegistry( '', registryCredential ) {
+    //       dockerImage.push()
+    //     }
+    //   }
+    // }
+    // }
     // stage('Deploy Image') {
     //   steps{
     //     script {
