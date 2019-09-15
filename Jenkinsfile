@@ -6,11 +6,18 @@ pipeline {
   }
   agent any
   stages {
-    stage('Cloning Git') {
+    // stage('Cloning Git') {
+    //   steps {
+    //     sh "if cd backend; then git pull; else git clone https://github.com/habiburrehman012/backend.git backend; fi"
+    //     // sh 'git clone https://github.com/habiburrehman012/backend.git'
+    //     // checkout scm
+    //   }
+    // }
+
+
+    stage('check docker') {
       steps {
-        sh "if cd backend; then git pull; else git clone https://github.com/habiburrehman012/backend.git backend; fi"
-        // sh 'git clone https://github.com/habiburrehman012/backend.git'
-        // checkout scm
+        sh 'docker'
       }
     }
 
@@ -46,14 +53,14 @@ pipeline {
     //     }
     // }
 
-    stage('Building image') {
-      steps{
-        // script {
-        //   dockerImage = docker.build registry + ":latest"
-        // }
-        sh 'docker build -t habiburrehman344/backend:latest .'
-      }
-    }
+    // stage('Building image') {
+    //   steps{
+    //     // script {
+    //     //   dockerImage = docker.build registry + ":latest"
+    //     // }
+    //     sh 'docker build -t habiburrehman344/backend:latest .'
+    //   }
+    // }
 
     // stage('Push image') {
     //   steps {
