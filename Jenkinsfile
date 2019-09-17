@@ -50,13 +50,24 @@ pipeline
       }
     }
 
+    stage('Initialize Minikube')
+    {
+      steps
+      {
+        script
+        {
+          sh "kubectl apply -f backend.yaml"
+        }
+      }
+    }
+
     stage('Update Deployment')
     {
       steps
       {
         script
         {
-          
+          sh "kubectl apply -f backend.yaml"
         }
       }
     }
