@@ -5,7 +5,10 @@ pipeline
     registry = "habiburrehman344/backend"
     registryCredential = 'docker-credentials'
   }
+  
   agent any
+  tools {nodejs "node"}
+
   stages 
   {
     stage('Pulling') 
