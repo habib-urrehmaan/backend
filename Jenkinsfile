@@ -4,7 +4,6 @@ pipeline
   {
     registry = "habiburrehman344/backend"
     registryCredential = 'docker-credentials'
-    dockerImage = ''
   }
   agent any
   stages 
@@ -13,8 +12,6 @@ pipeline
     {
       steps 
       {
-        sh 'git config --global user.email="habiburrehman012@gmail.com"'
-        sh 'git config --global user.name="Habib Ur Rehman"'
         sh "git pull https://github.com/habiburrehman012/backend.git"
       }
     }
