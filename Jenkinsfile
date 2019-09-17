@@ -13,6 +13,7 @@ pipeline
       steps 
       {
         sh "git pull https://github.com/habiburrehman012/backend.git development"
+        sh "cd backend"
       }
     }
 
