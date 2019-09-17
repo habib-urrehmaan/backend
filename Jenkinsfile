@@ -1,14 +1,14 @@
 pipeline {
   environment {
     registry = "habiburrehman344/backend"
-    registryCredential = 'DockerHub'
+    registryCredential = 'docker-credentials'
     dockerImage = ''
   }
   agent any
   stages {
     stage('Cloning Git') {
       steps {
-        sh "if cd backend; then git pull; else git clone https://github.com/habiburrehman012/backend.git backend; fi"
+        sh "if cd backend; then git pull; else git clone --single-branch --branch development https://github.com/habiburrehman012/backend.git backend; fi"
         // sh 'git clone https://github.com/habiburrehman012/backend.git'
         // checkout scm
       }
