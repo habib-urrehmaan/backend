@@ -25,7 +25,7 @@ pipeline
     {
       steps 
       {
-          sh 'Built was successfull'
+          echo 'Built was successfull'
       }
     }
 
