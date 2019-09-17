@@ -12,7 +12,7 @@ pipeline
     {
       steps 
       {
-        sh "git pull https://github.com/habiburrehman012/backend.git"
+        sh "git pull https://github.com/habiburrehman012/backend.git development"
       }
     }
 
