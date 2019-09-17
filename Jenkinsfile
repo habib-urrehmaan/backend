@@ -25,7 +25,7 @@ pipeline
     {
       steps 
       {
-          sh 'Application was built'
+          echo 'Application was built'
       }
     }
 
@@ -56,7 +56,7 @@ pipeline
       {
         script
         {
-          sh "kubectl apply -f backend.yaml"
+          sh "minikube start"
         }
       }
     }
