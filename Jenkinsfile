@@ -25,7 +25,7 @@ pipeline
     {
       steps 
       {
-          sh 'npm install'
+          sh 'Built was successfull'
       }
     }
 
