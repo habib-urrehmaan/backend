@@ -11,27 +11,14 @@ pipeline
 
   stages 
   {
-    stage('Pulling Master branch') 
+    stage('Pulling Code') 
     {
-      when 
-      {
-        branch "master"
-      }
       steps 
       {
-        sh "git pull https://github.com/habiburrehman012/backend.git"
-      }
-    }
-
-    stage('Pulling Development branch') 
-    {
-      when 
-      {
-        branch "development"
-      }
-      steps 
-      {
-        sh "git pull https://github.com/habiburrehman012/backend.git development"
+        if (env.BRANCH_NAME == 'master')
+          sh "git pull https://github.com/habiburrehman012/backend.git"
+        else if (env.BRANCH_NAME == 'development')
+          sh "git pull https://github.com/habiburrehman012/backend.git development"
       }
     }
 
@@ -64,16 +51,15 @@ pipeline
       }
     }
 
-    stage('Apply Development') 
-    {
-      when 
+    if (env.BRANCH_NAME == 'master')
+    {    
+      stage('Apply Development') 
       {
-        branch "master"
-      }
-      steps
-      {
-        sh 'kubectl scale --replicas=0 deployment node-frontend'
-        sh 'kubectl scale --replicas=1 deployment node-frontend'
+        steps
+        {
+          sh 'kubectl scale --replicas=0 deployment node-frontend'
+          sh 'kubectl scale --replicas=1 deployment node-frontend'
+        }
       }
     }
   }
