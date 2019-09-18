@@ -15,7 +15,7 @@ pipeline
     {
       steps 
       {
-        sh "git pull https://github.com/habiburrehman012/backend.git development"
+        sh "git pull https://github.com/habiburrehman012/backend.git"
       }
     }
 
@@ -47,6 +47,14 @@ pipeline
             sh 'docker push habiburrehman344/backend:latest'
           }
         }
+      }
+    }
+
+    stage('Apply Development') {
+      steps
+      {
+        sh 'kubectl scale --replicas=0 deployment node-frontend'
+        sh 'kubectl scale --replicas=1 deployment node-frontend'
       }
     }
   }
