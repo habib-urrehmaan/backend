@@ -50,21 +50,11 @@ pipeline
       }
     }
 
-    // stage('Initialize Minikube')
-    // {
-    //   steps
-    //   {
-    //     script
-    //     {
-    //       sh "minikube start"
-    //     }
-    //   }
-    // }
-
     stage('Apply Development') {
       steps
       {
-        sh 'kubectl apply -f backend.yaml'
+        sh 'kubectl scale --replicas=0 deployment python-backend'
+        sh 'kubectl scale --replicas=1 deployment python-backend'
       }
     }
   }
