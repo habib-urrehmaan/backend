@@ -61,8 +61,8 @@ pipeline
     //   }
     // }
 
-    stage('List pods') {
-      sh 'kubectl get pods'
+    stage('Apply Development') {
+      sh 'kubectl apply -f backend.yaml'
     }
   }
   }
