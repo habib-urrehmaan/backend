@@ -19,7 +19,7 @@ def hello():
 
 @app.route('/welcome')
 def welcome():
-    greeting = "Welcome to the world of Kubernetes :)"
+    greeting = "Welcome to the world of Kubernetes and Jenkins :)"
     return greeting
 
 @app.route('/instructors', methods=["GET"])
