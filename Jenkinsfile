@@ -3,7 +3,7 @@ pipeline
   environment 
   {
     registry = "habiburrehman344/backend"
-    registryCredential = 'docker-credentials'
+    registryCredential = 'DockerHub'
   }
   
   agent any
@@ -61,15 +61,9 @@ pipeline
     //   }
     // }
 
-    stage('kubectl check')
-    {
-      steps
-      {
-        script
-        {
-          sh "kubectl version"
-        }
-      }
+    stage('List pods') {
+      sh 'kubectl get pods'
     }
+  }
   }
 }
