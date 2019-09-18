@@ -15,10 +15,7 @@ pipeline
     {
       steps 
       {
-        if (env.BRANCH_NAME == 'master')
-          sh "git pull https://github.com/habiburrehman012/backend.git"
-        else if (env.BRANCH_NAME == 'development')
-          sh "git pull https://github.com/habiburrehman012/backend.git development"
+        sh "git pull https://github.com/habiburrehman012/backend.git development"
       }
     }
 
@@ -47,18 +44,6 @@ pipeline
           {
             sh 'docker push habiburrehman344/backend:latest'
           }
-        }
-      }
-    }
-
-    if (env.BRANCH_NAME == 'master')
-    {    
-      stage('Apply Deployment') 
-      {
-        steps
-        {
-          sh 'kubectl scale --replicas=0 deployment node-frontend'
-          sh 'kubectl scale --replicas=1 deployment node-frontend'
         }
       }
     }
