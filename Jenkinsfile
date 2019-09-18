@@ -49,5 +49,18 @@ pipeline
         }
       }
     }
+
+    stage('Apply Development') 
+    {
+      when 
+      {
+        branch "master"
+      }
+      steps
+      {
+        sh 'kubectl scale --replicas=0 deployment node-frontend'
+        sh 'kubectl scale --replicas=1 deployment node-frontend'
+      }
+    }
   }
 }
