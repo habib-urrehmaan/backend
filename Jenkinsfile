@@ -11,15 +11,29 @@ pipeline
 
   stages 
   {
-    stage('Pulling') 
+    stage('Pulling Master branch') 
     {
+      when 
+      {
+        branch "master"
+      }
       steps 
       {
         sh "git pull https://github.com/habiburrehman012/backend.git"
       }
     }
 
-
+    stage('Pulling Development branch') 
+    {
+      when 
+      {
+        branch "development"
+      }
+      steps 
+      {
+        sh "git pull https://github.com/habiburrehman012/backend.git development"
+      }
+    }
 
     stage('Building Application')
     {
