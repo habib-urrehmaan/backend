@@ -65,5 +65,4 @@ pipeline
       sh 'kubectl apply -f backend.yaml'
     }
   }
-  }
 }
