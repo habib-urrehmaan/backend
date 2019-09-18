@@ -50,24 +50,24 @@ pipeline
       }
     }
 
-    stage('Initialize Minikube')
-    {
-      steps
-      {
-        script
-        {
-          sh "minikube start"
-        }
-      }
-    }
+    // stage('Initialize Minikube')
+    // {
+    //   steps
+    //   {
+    //     script
+    //     {
+    //       sh "minikube start"
+    //     }
+    //   }
+    // }
 
-    stage('Update Deployment')
+    stage('kubectl check')
     {
       steps
       {
         script
         {
-          sh "kubectl apply -f backend.yaml"
+          sh "kubectl version"
         }
       }
     }
