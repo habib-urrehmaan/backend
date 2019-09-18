@@ -7,6 +7,11 @@ instructors = [
     { 'firstName': "Muhammad", 'lastName': "Hammad"  }
 ]
 
+students = [
+    {'firstName':"Habib Ur Rehman", 'lastName':"Malik"},
+    {'firstName':"Nausherwan",'lastName':"Khan"}
+]
+
 @app.route('/hello')
 def hello():
     greeting = "Hello world!"
@@ -20,6 +25,11 @@ def getInstructors():
 def getInstructor(id):
     id = int(id) - 1
     return jsonify(instructors[id])
+
+@app.route('/student/<id>', methods=["GET"])
+def getStudent(id):
+    id = int(id) - 1
+    return jsonify(students[id])
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=8080)
