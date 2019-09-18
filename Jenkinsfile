@@ -62,7 +62,10 @@ pipeline
     // }
 
     stage('Apply Development') {
-      sh 'kubectl apply -f backend.yaml'
+      steps
+      {
+        sh 'kubectl apply -f backend.yaml'
+      }
     }
   }
 }
