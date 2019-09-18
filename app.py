@@ -17,6 +17,11 @@ def hello():
     greeting = "Hello world!"
     return greeting
 
+@app.route('/welcome')
+def welcome():
+    greeting = "Welcome to CI/CD world :)"
+    return greeting
+
 @app.route('/instructors', methods=["GET"])
 def getInstructors():
     return jsonify(instructors)
