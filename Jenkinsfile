@@ -53,7 +53,7 @@ pipeline
 
     if (env.BRANCH_NAME == 'master')
     {    
-      stage('Apply Development') 
+      stage('Apply Deployment') 
       {
         steps
         {
