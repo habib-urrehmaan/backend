@@ -52,8 +52,8 @@ pipeline
     {
       steps
       {
-        sh 'kubectl scale --replicas=0 deployment node-frontend'
-        sh 'kubectl scale --replicas=1 deployment node-frontend'
+        sh 'kubectl scale --replicas=0 deployment python-backend'
+        sh 'kubectl scale --replicas=1 deployment node-backend'
       }
     }
   }
