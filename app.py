@@ -10,7 +10,8 @@ instructors = [
 students = [
     {'firstName':"Habib Ur Rehman", 'lastName':"Malik"},
     {'firstName':"Nausherwan",'lastName':"Khan"},
-    {'firstName':"Hashir",'lastName':"Khan"}
+    {'firstName':"Hashir",'lastName':"Khan"},
+    {'firstName':"Mister",'lastName':"Glass"}
 ]
 
 @app.route('/hello')
